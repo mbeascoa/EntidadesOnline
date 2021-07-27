@@ -8,11 +8,11 @@ import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.view.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+import android.widget.Toolbar;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -33,7 +33,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.id.drapp.models.doctorInfo;
+import com.beastek.entidadesonline.models.doctorInfo;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
 import java.util.ArrayList;
@@ -68,7 +68,7 @@ public class hospitalActivity extends AppCompatActivity {
         hospitalPager=  findViewById(R.id.hospitalPager);
         hospitalSearchBar = findViewById(R.id.hospitalSearchBar);
 
-        com.id.drapp.doctorCategoryAdapter adapter=new com.id.drapp.doctorCategoryAdapter(this,getSupportFragmentManager());
+        com.beastek.entidadesonline.doctorCategoryAdapter adapter=new com.beastek.entidadesonline.doctorCategoryAdapter(this,getSupportFragmentManager());
         hospitalPager.setAdapter(adapter);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             hospitalTabLayout.setBackgroundColor(getColor(R.color.actionBar));

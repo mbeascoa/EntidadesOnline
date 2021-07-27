@@ -14,9 +14,9 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -39,8 +39,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.id.drapp.doctorContract.patientEntry;
-import com.id.drapp.models.patientsInfo;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
+import com.beastek.entidadesonline.models.patientsInfo;
 
 public class addPatientActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -104,14 +104,14 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
             }
         });
 
-        user = com.id.drapp.doctorPreference.getUsernameFromSP(this);
-        doctorPushId = com.id.drapp.doctorPreference.getUserPushId(this);
+        user = com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this);
+        doctorPushId = com.beastek.entidadesonline.doctorPreference.getUserPushId(this);
 
         mFirebaseStorage = FirebaseStorage.getInstance();
-        mStorageReference = mFirebaseStorage.getReference().child("doctor_app").child(doctorPushId).child(com.id.drapp.charUtility.filterString(user));
+        mStorageReference = mFirebaseStorage.getReference().child("doctor_app").child(doctorPushId).child(com.beastek.entidadesonline.charUtility.filterString(user));
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
-        mDatabaseReference = mFirebaseDatabase.getReference().child(doctorPushId).child(com.id.drapp.charUtility.filterString(user)).child("patientData");
+        mDatabaseReference = mFirebaseDatabase.getReference().child(doctorPushId).child(com.beastek.entidadesonline.charUtility.filterString(user)).child("patientData");
 
         patientUri = getIntent().getStringExtra("patientUri");
 
@@ -153,7 +153,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                     Bundle extras = data.getExtras();
                     Bitmap imageBitmap = (Bitmap) extras.get("data");
                     Bitmap bitmap = Bitmap.createScaledBitmap(imageBitmap, 300, 300, true);
-                    Bitmap bmp = com.id.drapp.ImageHelper.getRoundedCornerBitmap(bitmap, 200);
+                    Bitmap bmp = com.beastek.entidadesonline.ImageHelper.getRoundedCornerBitmap(bitmap, 200);
                     bmpByte = DbBitmapUtility.getBytes(bmp);
                     patientPic.setImageBitmap(bmp);
                     break;
@@ -227,7 +227,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
     }
 
     public void onSaveClick(View view){
-        stopService(new Intent(this, com.id.drapp.patientIntentService.class));
+        stopService(new Intent(this, com.beastek.entidadesonline.patientIntentService.class));
         final String name = patientName.getText().toString();
         final String phoneNumber = patientphno.getText().toString();
         final String email = patientEmail.getText().toString();
@@ -305,7 +305,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
                                         Toast.makeText(this, "New Patient Added Successfully", Toast.LENGTH_LONG).show();
                                         finish();
-                                        Intent intent = new Intent(this, com.id.drapp.detailActivity.class);
+                                        Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                         intent.putExtra("detailUri", uri.toString());
                                         startActivity(intent);
 
@@ -369,7 +369,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
                                     Toast.makeText(this, "New Patient Added Successfully", Toast.LENGTH_LONG).show();
                                     finish();
-                                    Intent intent = new Intent(this, com.id.drapp.detailActivity.class);
+                                    Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                     intent.putExtra("detailUri", uri.toString());
                                     startActivity(intent);
                                 }
@@ -408,7 +408,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
                                         Toast.makeText(this, "Patient Updated Successfull", Toast.LENGTH_LONG).show();
                                         finish();
-                                        Intent intent = new Intent(this, com.id.drapp.detailActivity.class);
+                                        Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                         intent.putExtra("detailUri", patientUri);
                                         startActivity(intent);
                                     }else {
@@ -456,7 +456,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
                                     Toast.makeText(this, "Patient Updated Successfull", Toast.LENGTH_LONG).show();
                                     finish();
-                                    Intent intent = new Intent(this, com.id.drapp.detailActivity.class);
+                                    Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                     intent.putExtra("detailUri", patientUri);
                                     startActivity(intent);
                                 }
@@ -492,13 +492,13 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
         switch (view.getId()){
             case R.id.maleRadio:
                 if(checked){
-                    Toast.makeText(this, "Male", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Hombre", Toast.LENGTH_LONG).show();
                     GENDER = 0;
                 }
                 break;
             case R.id.femaleRadio:
                 if(checked){
-                    Toast.makeText(this, "Female", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Mujer", Toast.LENGTH_LONG).show();
                     GENDER = 1;
                 }
                 break;

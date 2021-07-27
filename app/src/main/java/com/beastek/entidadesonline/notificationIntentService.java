@@ -2,7 +2,7 @@ package com.beastek.entidadesonline;
 
 import android.app.IntentService;
 import android.content.Intent;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class notificationIntentService extends IntentService {
 
@@ -12,6 +12,6 @@ public class notificationIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        com.id.drapp.executeBackgroundTask.shouldContinue = false;
+        com.beastek.entidadesonline.executeBackgroundTask.shouldContinue = false;
     }
 }

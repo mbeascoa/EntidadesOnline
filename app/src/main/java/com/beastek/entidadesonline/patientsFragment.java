@@ -12,8 +12,8 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -37,7 +37,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.id.drapp.doctorContract.patientEntry;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
@@ -45,7 +45,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
 
     ListView patientsRecycler;
     public static int PATIENT_ADAPTER = 0;
-    private com.id.drapp.patientAdapter adapter;
+    private com.beastek.entidadesonline.patientAdapter adapter;
     private static String user;
     private static String pushId;
 
@@ -91,9 +91,9 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
 
         activity = getActivity();
 
-        pushId = com.id.drapp.doctorPreference.getUserPushId(getActivity());
+        pushId = com.beastek.entidadesonline.doctorPreference.getUserPushId(getActivity());
 
-        adapter = new com.id.drapp.patientAdapter(getActivity(), null);
+        adapter = new com.beastek.entidadesonline.patientAdapter(getActivity(), null);
         patientsRecycler = rootView.findViewById(R.id.patientsRecycler);
         patientsRecycler.setAdapter(adapter);
 
@@ -107,7 +107,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
 
         connectivityManager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
-        user = com.id.drapp.doctorPreference.getUsernameFromSP(getActivity());
+        user = com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(getActivity());
         mDatabaseReference = mFirebaseDatabase.getReference().child(pushId).child(charUtility.filterString(user)).child("patientData");
 
         patientsRecycler.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -234,7 +234,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if(com.id.drapp.doctorPreference.getWantToRestoreData(getActivity())){
+                    if(com.beastek.entidadesonline.doctorPreference.getWantToRestoreData(getActivity())){
                         if(dataSnapshot.getChildrenCount() == 0){
 
                         }else {

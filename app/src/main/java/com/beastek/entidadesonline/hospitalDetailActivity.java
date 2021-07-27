@@ -6,9 +6,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+
+import	android.app.AlertDialog
+
 import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
@@ -17,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,8 +30,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.id.drapp.models.doctorAppointmentsModel;
-import com.id.drapp.models.patientsAppointmentModel;
+import com.beastek.entidadesonline.models.doctorAppointmentsModel;
+import com.beastek.entidadesonline.models.patientsAppointmentModel;
 
 public class hospitalDetailActivity extends AppCompatActivity {
 

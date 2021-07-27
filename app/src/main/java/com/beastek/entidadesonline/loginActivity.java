@@ -10,13 +10,13 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
@@ -57,7 +57,7 @@ public class loginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
 
-        user = com.id.drapp.doctorPreference.getUsernameFromSP(this);
+        user = com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this);
 
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -70,7 +70,7 @@ public class loginActivity extends AppCompatActivity {
         progressDialog.setCancelable(false);
 
 
-        if(com.id.drapp.doctorPreference.getBooleanFromSP(this)){
+        if(com.beastek.entidadesonline.doctorPreference.getBooleanFromSP(this)){
             Intent intent = new Intent(this, patientsListActivity.class);
             startActivity(intent);
         }

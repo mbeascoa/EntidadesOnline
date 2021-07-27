@@ -5,7 +5,7 @@ import android.provider.BaseColumns;
 
 public final class doctorContract {
 
-    public static final String CONTENT_AUTHORITY = "com.id.drapp";
+    public static final String CONTENT_AUTHORITY = "com.beastek.entidadesonline";
     public static Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
     public static String PATH_DOCTORS = "doctors";
 

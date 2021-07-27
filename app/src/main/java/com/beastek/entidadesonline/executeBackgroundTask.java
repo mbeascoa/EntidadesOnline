@@ -4,7 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -58,7 +58,7 @@ public class executeBackgroundTask {
         for (int i = 0; i < cursor.getCount(); i++) {
 
             if (shouldContinue == false) {
-                com.id.drapp.patientIntentService service = new com.id.drapp.patientIntentService();
+                com.beastek.entidadesonline.patientIntentService service = new com.beastek.entidadesonline.patientIntentService();
                 service.stopSelf();
                 return;
             }

@@ -9,9 +9,11 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,7 +32,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
-import com.id.drapp.doctorContract.patientEntry;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 public class detailActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -91,8 +93,8 @@ public class detailActivity extends AppCompatActivity implements LoaderManager.L
 
         getLoaderManager().initLoader(DETAIL_LOADER, null, this);
 
-        user = com.id.drapp.doctorPreference.getUsernameFromSP(this);
-        doctorPushId = com.id.drapp.doctorPreference.getUserPushId(this);
+        user = com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this);
+        doctorPushId = com.beastek.entidadesonline.doctorPreference.getUserPushId(this);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mDatabaseReference = mFirebaseDatabase.getReference().child(doctorPushId).child(charUtility.filterString(user)).child("patientData");

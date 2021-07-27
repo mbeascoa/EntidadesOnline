@@ -11,7 +11,7 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.id.drapp.doctorContract.patientEntry;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 public class patientAdapter extends CursorAdapter{
     Context context;

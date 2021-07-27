@@ -2,7 +2,7 @@ package com.beastek.entidadesonline;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +24,7 @@ public class createAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         setTitle("Create Account");
 
-        if(com.id.drapp.doctorPreference.getBooleanFromSP(this)){
+        if(com.beastek.entidadesonline.doctorPreference.getBooleanFromSP(this)){
             Intent intent = new Intent(this, patientsListActivity.class);
             startActivity(intent);
         }

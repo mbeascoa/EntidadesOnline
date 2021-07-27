@@ -11,7 +11,8 @@
     <color name="viewBg">#f1f5f8</color>
     <color name="album_title">#809779</color>
     <color name="noInternet">#FFAACE9F</color>
-    <color name="purple_500">#AB8BCF</color>
+    <color name="purple_200">#B29CCC</color>
+    <color name="purple_500">#A27ECC</color>
     <color name="purple_700">#905ACD</color>
     <color name="white">#F7F6F8</color>
     <color name="black">#020202</color>

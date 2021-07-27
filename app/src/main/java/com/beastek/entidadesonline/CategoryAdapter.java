@@ -20,7 +20,7 @@ public class CategoryAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new com.id.drapp.patientsFragment();
+            return new com.beastek.entidadesonline.patientsFragment();
         } else {
             return new secondTabFragment();
         }

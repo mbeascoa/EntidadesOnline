@@ -10,8 +10,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +19,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -33,8 +35,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.id.drapp.doctorContract.doctorEntry;
-import com.id.drapp.models.doctorInfo;
+import com.beastek.entidadesonline.doctorContract.doctorEntry;
+import com.beastek.entidadesonline.models.doctorInfo;
 
 import java.io.IOException;
 
@@ -75,8 +77,8 @@ public class createAccount2Activity extends AppCompatActivity {
         setTitle("");
         getSupportActionBar().setElevation(0);
 
-        if(com.id.drapp.doctorPreference.getBooleanFromSP(this)){
-            Intent intent = new Intent(this, com.id.drapp.patientsListActivity.class);
+        if(com.beastek.entidadesonline.doctorPreference.getBooleanFromSP(this)){
+            Intent intent = new Intent(this, com.beastek.entidadesonline.patientsListActivity.class);
             startActivity(intent);
         }
 
@@ -139,7 +141,7 @@ public class createAccount2Activity extends AppCompatActivity {
                     Uri selectedImage = data.getData();
                     try {
                         Bitmap bitmap = Bitmap.createScaledBitmap(MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage), 300, 300, true);
-                        Bitmap bmp = com.id.drapp.ImageHelper.getRoundedCornerBitmap(bitmap, 200);
+                        Bitmap bmp = com.beastek.entidadesonline.ImageHelper.getRoundedCornerBitmap(bitmap, 200);
                         bmpByte = DbBitmapUtility.getBytes(bmp);
                         userPic.setImageBitmap(bmp);
                     } catch (IOException e) {
@@ -204,12 +206,12 @@ public class createAccount2Activity extends AppCompatActivity {
                                         createUserInLocalDb(uri[0]);
 
                                         if(bmpByte == null){
-                                            mDatabaseReference = mDatabaseReference.child(com.id.drapp.charUtility.filterString(useremail)).child("doctorInfo");
+                                            mDatabaseReference = mDatabaseReference.child(com.beastek.entidadesonline.charUtility.filterString(useremail)).child("doctorInfo");
                                             mDatabaseReference.setValue(new doctorInfo(firstname, lastname, userphone, useremail, password, title, doctorInstitute, doctorInstituteAddress, false, pushId, null));
                                             progressDialog.dismiss();
                                         }else {
                                             mStorageReference = mFirebaseStorage.getReference().child(pushId);
-                                            mStorageReference = mStorageReference.child(com.id.drapp.charUtility.filterString(useremail)).child("doctorInfo");
+                                            mStorageReference = mStorageReference.child(com.beastek.entidadesonline.charUtility.filterString(useremail)).child("doctorInfo");
                                             UploadTask uploadTask = mStorageReference.putBytes(bmpByte);
 
                                             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -230,7 +232,7 @@ public class createAccount2Activity extends AppCompatActivity {
                                                             if (task.isSuccessful()) {
                                                                 Uri downloadUri = task.getResult();
 
-                                                                mDatabaseReference = mDatabaseReference.child(com.id.drapp.charUtility.filterString(useremail)).child("doctorInfo");
+                                                                mDatabaseReference = mDatabaseReference.child(com.beastek.entidadesonline.charUtility.filterString(useremail)).child("doctorInfo");
                                                                 mDatabaseReference.setValue(new doctorInfo(firstname, lastname, userphone, useremail, password, title, doctorInstitute, doctorInstituteAddress, false, pushId, downloadUri.toString()));
                                                             } else {
                                                                 progressDialog.dismiss();
@@ -274,10 +276,10 @@ public class createAccount2Activity extends AppCompatActivity {
         }else {
             Toast.makeText(this, "User Created Successfully" ,Toast.LENGTH_SHORT).show();
 
-            com.id.drapp.patientDbHelper.createPatientDb(this, useremail);
+            com.beastek.entidadesonline.patientDbHelper.createPatientDb(this, useremail);
             finish();
 
-            Intent intent = new Intent(this, com.id.drapp.loginActivity.class);
+            Intent intent = new Intent(this, com.beastek.entidadesonline.loginActivity.class);
             startActivity(intent);
         }
     }
