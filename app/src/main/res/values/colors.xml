@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/loginCream</color>
+    <color name="colorPrimaryDark">@color/loginCream</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="loginCream">#eff5ed</color>
+    <color name="colorRotate">#FFEBF5E7</color>
+    <color name="lightgreen">#FF77E759</color>
+    <color name="actionBar">#FF36C44B</color>
+
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#809779</color>
+    <color name="noInternet">#FFAACE9F</color>
+    <color name="purple_500">#AB8BCF</color>
+    <color name="purple_700">#905ACD</color>
+    <color name="white">#F7F6F8</color>
+    <color name="black">#020202</color>
+    <color name="teal_200">#6FC4CC</color>
+    <color name="teal_700">#1BADC6</color>
+
+
+</resources>
