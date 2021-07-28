@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -102,7 +102,7 @@ public class hospitalListFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String[] tags = (String[]) view.getTag();
-                Intent intent = new Intent(getActivity(), com.id.drapp.hospitalDetailActivity.class);
+                Intent intent = new Intent(getActivity(), com.beastek.entidadesonline.hospitalDetailActivity.class);
                 intent.putExtra("tag", tags);
                 startActivity(intent);
             }

@@ -1,36 +1,43 @@
 package com.beastek.entidadesonline;
 
+
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
+
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.viewpager.widget.ViewPager;
+
+
+
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.widget.AdapterView;
+
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mancj.materialsearchbar.MaterialSearchBar;
 
@@ -50,7 +57,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
     private TabLayout tabsLayout;
     private ListView patientSearchList;
 
-     private com.id.drapp.patientAdapter adapter1;
+     private com.beastek.entidadesonline.patientAdapter adapter1;
      private FirebaseAuth firebaseAuth;
 
      private MaterialDialog mMaterialDialog;
@@ -63,7 +70,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_patient);
 
-        com.id.drapp.patientProvider.patientInitialize();
+        com.beastek.entidadesonline.patientProvider.patientInitialize();
 
         toolbar = findViewById(R.id.toolbar);
         searchBar = findViewById(R.id.searchBar);
@@ -73,14 +80,14 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
 
         showAboutUsDialog();
 
-        adapter1 = new com.id.drapp.patientAdapter(this, null);
+        adapter1 = new com.beastek.entidadesonline.patientAdapter(this, null);
         patientSearchList.setAdapter(adapter1);
         patientSearchList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String pushId = (String) view.getTag();
-                Intent intent = new Intent(patientsListActivity.this, com.id.drapp.detailActivity.class);
-                intent.putExtra("detailUri", com.id.drapp.doctorContract.patientEntry.contentUri(com.id.drapp.doctorPreference.getUsernameFromSP(patientsListActivity.this)) + "/" + 1 + "/" + pushId);
+                Intent intent = new Intent(patientsListActivity.this, com.beastek.entidadesonline.detailActivity.class);
+                intent.putExtra("detailUri", com.beastek.entidadesonline.doctorContract.patientEntry.contentUri(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(patientsListActivity.this)) + "/" + 1 + "/" + pushId);
                 startActivity(intent);
             }
         });
@@ -94,7 +101,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         ///////ViewPager comes handy when we swipe to left and right to fragments///////
         pager=(ViewPager) findViewById(R.id.pager);
         //////category Adapter for setting data for ViewPager///////////
-        final com.id.drapp.CategoryAdapter adapter=new com.id.drapp.CategoryAdapter(this,getSupportFragmentManager());
+        final com.beastek.entidadesonline.CategoryAdapter adapter=new com.beastek.entidadesonline.CategoryAdapter(this,getSupportFragmentManager());
         //////Pager will retrieve data from CategoryAdapter///////////
         pager.setAdapter(adapter);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -119,11 +126,11 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
             navigationView.setNavigationItemSelectedListener(this);
         }
 
-        Cursor cursor = getContentResolver().query(Uri.parse(com.id.drapp.doctorContract.doctorEntry.CONTENT_URI + "/" +  com.id.drapp.doctorPreference.getUsernameFromSP(this)), null, null, null, null);
+        Cursor cursor = getContentResolver().query(Uri.parse(com.beastek.entidadesonline.doctorContract.doctorEntry.CONTENT_URI + "/" +  com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this)), null, null, null, null);
         cursor.moveToFirst();
 
-        String name = cursor.getString(cursor.getColumnIndex(com.id.drapp.doctorContract.doctorEntry.COLUMN_EMAIL));
-        byte[] byte1 = cursor.getBlob(cursor.getColumnIndex(com.id.drapp.doctorContract.doctorEntry.COLUMN_IMAGE));
+        String name = cursor.getString(cursor.getColumnIndex(com.beastek.entidadesonline.doctorContract.doctorEntry.COLUMN_EMAIL));
+        byte[] byte1 = cursor.getBlob(cursor.getColumnIndex(com.beastek.entidadesonline.doctorContract.doctorEntry.COLUMN_IMAGE));
         if(byte1 != null){
             Bitmap bmp  = DbBitmapUtility.getImage(byte1);
             Bitmap bmp1 = Bitmap.createScaledBitmap(bmp, 200 ,200 ,true);
@@ -136,7 +143,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         doctorname.setText(name);
         //-------------------------------------------------------------------------------->
 
-        searchBar.setHint("Search Patient Name");
+        searchBar.setHint("Buscar el nombre del paciente");
         searchBar.setElevation(10);
         loadSuggestList();
         searchBar.addTextChangeListener(new TextWatcher() {
@@ -201,9 +208,9 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         if (id == R.id.nav_logout) {
             finishTheActivity();
         }else if(id == R.id.nav_sync){
-            com.id.drapp.patientsFragment.initialize(this);
+            com.beastek.entidadesonline.patientsFragment.initialize(this);
         }else if (id == R.id.settings){
-            Intent intent = new Intent(this, com.id.drapp.settingsActivity.class);
+            Intent intent = new Intent(this, com.beastek.entidadesonline.settingsActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_about){
             mMaterialDialog.show();
@@ -224,7 +231,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         mMaterialDialog = new MaterialDialog(this)
                 .setTitle("Doctorave")
                 .setMessage("Doctorave is a Complete App for Doctors and Patient. Developed by Bhavya Arora.")
-                .setContentView(R.layout.aboutusdialog)
+                // .setContentView(R.layout.aboutusdialog)
                 .setContentView(textView)
                 .setPositiveButton("OK", new View.OnClickListener() {
                     @Override
@@ -236,15 +243,15 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
     }
 
     public void finishTheActivity(){
-        com.id.drapp.doctorPreference.saveBooleanInSP(this, false);
-        com.id.drapp.doctorPreference.saveUsernameInSP(this, null);
-        com.id.drapp.doctorPreference.saveUserPushId(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveUsernameInSP(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveUserPushId(this, null);
         firebaseAuth.signOut();
         finish();
     }
 
     public void startSearching(String text){
-        Cursor cursor = getContentResolver().query(Uri.parse(com.id.drapp.doctorContract.patientEntry.contentUri(com.id.drapp.doctorPreference.getUsernameFromSP(this)) + "/" + text), null, null,null, null);
+        Cursor cursor = getContentResolver().query(Uri.parse(com.beastek.entidadesonline.doctorContract.patientEntry.contentUri(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this)) + "/" + text), null, null,null, null);
         if(cursor != null){
             adapter1.swapCursor(cursor);
         }else {
@@ -262,13 +269,13 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
 
     public List<String> getNames(){
         String[] projection = new String[]{
-                com.id.drapp.doctorContract.patientEntry.COLUMN_NAME};
-        Cursor cursor = getContentResolver().query(com.id.drapp.doctorContract.patientEntry.contentUri(com.id.drapp.doctorPreference.getUsernameFromSP(this)), projection, null, null, null);
+                com.beastek.entidadesonline.doctorContract.patientEntry.COLUMN_NAME};
+        Cursor cursor = getContentResolver().query(com.beastek.entidadesonline.doctorContract.patientEntry.contentUri(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(this)), projection, null, null, null);
 
         List<String> list = new ArrayList<>();
         if(cursor.moveToFirst()){
             do{
-                list.add(cursor.getString(cursor.getColumnIndex(com.id.drapp.doctorContract.patientEntry.COLUMN_NAME)));
+                list.add(cursor.getString(cursor.getColumnIndex(com.beastek.entidadesonline.doctorContract.patientEntry.COLUMN_NAME)));
             }while (cursor.moveToNext());
         }
         return list;
@@ -280,7 +287,7 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         // This adds menu items to the app bar.
         getMenuInflater().inflate(R.menu.menu, menu);
 
-        if(com.id.drapp.doctorPreference.getIsTapTargetShown(this)){
+        if(com.beastek.entidadesonline.doctorPreference.getIsTapTargetShown(this)){
 
         }else {
             new Handler().post(new Runnable() {
@@ -293,21 +300,21 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
                             .setBackgroundColour(getResources().getColor(R.color.actionBar))
                             .setPrimaryText("Search Patients")
                             .setSecondaryText("You can Search Patients in your Offline Database.")
-                            .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
+                            /* .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
                             {
                                 @Override
                                 public void onHidePrompt(MotionEvent event, boolean tappedTarget)
                                 {
                                     //TODO: Store in SharedPrefs so you don't show this prompt again.
                                     Activity patientsListActivity = patientsListActivity.this;
-                                    com.id.drapp.patientsFragment.showTapTarget(patientsListActivity.this, patientsListActivity);
+                                    com.beastek.entidadesonline.patientsFragment.showTapTarget(patientsListActivity.this, patientsListActivity);
                                 }
 
                                 @Override
                                 public void onHidePromptComplete()
                                 {
                                 }
-                            })
+                            })     */
                             .show();
 
                 }
@@ -334,9 +341,9 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
 
 
     public void logout(){
-        com.id.drapp.doctorPreference.saveBooleanInSP(this, false);
-        com.id.drapp.doctorPreference.saveUsernameInSP(this, null);
-        com.id.drapp.doctorPreference.saveIsTapTargetShown(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveUsernameInSP(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(this, false);
         finish();
     }
 

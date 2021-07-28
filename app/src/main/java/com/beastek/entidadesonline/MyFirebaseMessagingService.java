@@ -42,11 +42,11 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setColor(ContextCompat.getColor(this, R.color.colorPrimary))
                 .setSmallIcon(R.drawable.ic_launcher_notification)
-                .setContentTitle("New Appointment")
-                .setContentText("You Have got new Appointment from: " + notificationTitle)
+                .setContentTitle("Nueva cita")
+                .setContentText("Tienes una nueva cita de: " + notificationTitle)
                 .setWhen(Long.valueOf("1532163083138"))
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(
-                        "You Have got new Appointment from: " + notificationTitle))
+                        "Tienes una nueva cita de: " + notificationTitle))
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setContentIntent(contentIntent(this))
                 .setAutoCancel(true);

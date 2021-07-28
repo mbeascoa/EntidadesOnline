@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 
-import	android.app.AlertDialog
+import	android.app.AlertDialog;
 
 import android.text.TextUtils;
 import android.view.View;
@@ -70,7 +70,7 @@ public class hospitalDetailActivity extends AppCompatActivity {
         email = tags[1];
 
         progressDialog=new ProgressDialog(this,R.style.AppTheme_Dark_Dialog);
-        progressDialog.setMessage("Please Wait..");
+        progressDialog.setMessage("Por favor espere..");
         progressDialog.setCancelable(false);
         progressDialog.show();
 
@@ -89,7 +89,7 @@ public class hospitalDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                 if(networkInfo == null){
-                    Toast.makeText(hospitalDetailActivity.this, "No Internet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(hospitalDetailActivity.this, "No hay conexión a internet", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 getTheAppointment();
@@ -126,7 +126,7 @@ public class hospitalDetailActivity extends AppCompatActivity {
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 progressDialog.dismiss();
-                Toast.makeText(hospitalDetailActivity.this, "Something went wrong", Toast.LENGTH_LONG).show();
+                Toast.makeText(hospitalDetailActivity.this, "Algo ha ido mal", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -164,19 +164,19 @@ public class hospitalDetailActivity extends AppCompatActivity {
 
                 final String appointmentPushId;
                 if(TextUtils.isEmpty(patientFullName.getText().toString().trim())){
-                    patientFullName.setError("Cannot be Empty");
+                    patientFullName.setError("No puede ser vacío");
                 }else {
                     if(TextUtils.isEmpty(patientProblem.getText().toString().trim())){
-                        patientProblem.setError("Cannot be Empty");
+                        patientProblem.setError("No puede ser vacío");
                     }else {
                         if(TextUtils.isEmpty(patientAddress.getText().toString().trim())){
-                            patientAddress.setError("Cannot be Empty");
+                            patientAddress.setError("No puede ser vacío");
                         }else {
                             if(TextUtils.isEmpty(patientEmail.getText().toString().trim())){
-                                patientEmail.setError("Cannot be Empty");
+                                patientEmail.setError("No puede ser vacío");
                             }else {
                                 if(TextUtils.isEmpty(patientDob.getText().toString().trim())){
-                                    patientDob.setError("Cannot be Empty");
+                                    patientDob.setError("No puede ser vacío");
                                 }else {
                                     progressDialog.show();
                                     appointmentPushId = mDatabaseReference.push().getKey();
@@ -200,7 +200,7 @@ public class hospitalDetailActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onSuccess(Void aVoid) {
                                                                     progressDialog.dismiss();
-                                                                    Toast.makeText(hospitalDetailActivity.this, "Booked your Appointment", Toast.LENGTH_LONG).show();
+                                                                    Toast.makeText(hospitalDetailActivity.this, "Registrada su cita", Toast.LENGTH_LONG).show();
                                                                     finish();
                                                                 }
                                                             })
@@ -208,7 +208,7 @@ public class hospitalDetailActivity extends AppCompatActivity {
                                                                 @Override
                                                                 public void onFailure(@NonNull Exception e) {
                                                                     progressDialog.dismiss();
-                                                                    Toast.makeText(hospitalDetailActivity.this, "Something went Wrong", Toast.LENGTH_LONG).show();
+                                                                    Toast.makeText(hospitalDetailActivity.this, "Algo ha ido mal", Toast.LENGTH_LONG).show();
                                                                 }
                                                             });
                                                 }

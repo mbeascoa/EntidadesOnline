@@ -7,11 +7,11 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
-import com.id.drapp.doctorContract.doctorEntry;
-import com.id.drapp.doctorContract.patientEntry;
+import com.beastek.entidadesonline.doctorContract.doctorEntry;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class patientProvider extends ContentProvider{
     private static final int SPECIFIC_DOCTOR = 301;
 
     public static UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
-    private com.id.drapp.patientDbHelper mPatientHelper;
+    private com.beastek.entidadesonline.patientDbHelper mPatientHelper;
 
     static{
         sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.PATH_DOCTORS, DOCTOR);
@@ -35,7 +35,7 @@ public class patientProvider extends ContentProvider{
 
     @Override
     public boolean onCreate() {
-        mPatientHelper = new com.id.drapp.patientDbHelper(getContext());
+        mPatientHelper = new com.beastek.entidadesonline.patientDbHelper(getContext());
         return true;
     }
 
@@ -48,13 +48,13 @@ public class patientProvider extends ContentProvider{
 
         switch (match){
             case PATIENTS:
-                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case PATIENT_ID:
                 List list4 = uri.getPathSegments();
                 selection = patientEntry.COLUMN_PUSH_ID + "=?";
                 selectionArgs = new String[]{String.valueOf(list4.get(2))};
-                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
                 break;
             case PATIENT_NAME:
                 List list2 = uri.getPathSegments();
@@ -63,7 +63,7 @@ public class patientProvider extends ContentProvider{
                 selection = patientEntry.COLUMN_NAME + " LIKE ?";
                 selectionArgs = new String[]{"%" + name + "%"};
 
-                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = db.query(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), projection, selection, selectionArgs, null, null, sortOrder);
                 break;
 
             case DOCTOR_ID:
@@ -140,7 +140,7 @@ public class patientProvider extends ContentProvider{
     public Uri insertPatient(Uri uri, ContentValues values){
         SQLiteDatabase db = mPatientHelper.getWritableDatabase();
 
-        Long returnedId = db.insert(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), null, values);
+        Long returnedId = db.insert(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), null, values);
         if(returnedId == -1){
             return null;
         }
@@ -169,13 +169,13 @@ public class patientProvider extends ContentProvider{
             case PATIENTS:
                 // Delete all rows that match the selection and selection args
                 getContext().getContentResolver().notifyChange(uri, null);
-                return database.delete(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), selection, selectionArgs);
+                return database.delete(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), selection, selectionArgs);
             case PATIENT_ID:
                 // Delete a single row given by the ID in the URI
                 selection = patientEntry.COLUMN_PUSH_ID + "=?";
                 selectionArgs = new String[] { uri.getPathSegments().get(2) };
                 getContext().getContentResolver().notifyChange(uri, null);
-                return database.delete(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), selection, selectionArgs);
+                return database.delete(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), selection, selectionArgs);
 
             default:
                 throw new IllegalArgumentException("Deletion is not supported for " + uri);
@@ -197,7 +197,7 @@ public class patientProvider extends ContentProvider{
                 getContext().getContentResolver().notifyChange(uri, null);
 
                 // Returns the number of database rows affected by the update statement
-                return database.update(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), values, selection, selectionArgs);
+                return database.update(patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), values, selection, selectionArgs);
 
             case SPECIFIC_DOCTOR:
                 List list1 = uri.getPathSegments();
@@ -218,8 +218,8 @@ public class patientProvider extends ContentProvider{
 
 
     public static void patientInitialize(){
-        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())), PATIENTS);
-        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())) + "/#/*", PATIENT_ID);
-        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.id.drapp.MyApplication.getAppContext())) + "/*", PATIENT_NAME);
+        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())), PATIENTS);
+        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())) + "/#/*", PATIENT_ID);
+        patientProvider.sUriMatcher.addURI(doctorContract.CONTENT_AUTHORITY, doctorContract.patientEntry.tableName(doctorPreference.getUsernameFromSP(com.beastek.entidadesonline.MyApplication.getAppContext())) + "/*", PATIENT_NAME);
     }
 }

@@ -6,8 +6,8 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -43,8 +43,8 @@ public class verifyPatient extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_patient);
 
-        if (com.id.drapp.doctorPreference.getPhoneNumberFromSP(this) != null){
-            Intent intent = new Intent(this, com.id.drapp.hospitalActivity.class);
+        if (com.beastek.entidadesonline.doctorPreference.getPhoneNumberFromSP(this) != null){
+            Intent intent = new Intent(this, com.beastek.entidadesonline.hospitalActivity.class);
             startActivity(intent);
         }
 
@@ -114,7 +114,7 @@ public class verifyPatient extends AppCompatActivity {
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 progressDialog.dismiss();
                 Toast.makeText(verifyPatient.this, "Code Sent ", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(verifyPatient.this, com.id.drapp.verifyPatient2.class);
+                Intent intent = new Intent(verifyPatient.this, com.beastek.entidadesonline.verifyPatient2.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("verificationId", s);
                 intent.putExtra("phone", fullPhoneNo);

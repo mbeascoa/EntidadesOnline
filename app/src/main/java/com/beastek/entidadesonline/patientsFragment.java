@@ -14,12 +14,17 @@ import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.CursorLoader;
-import android.support.v4.content.Loader;
-import android.support.v7.app.AlertDialog;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
+
+
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.CursorLoader;
+import androidx.loader.content.Loader;
+
+
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -28,6 +33,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -40,6 +46,7 @@ import com.google.firebase.messaging.FirebaseMessaging;
 import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
+
 
 public class patientsFragment extends Fragment implements LoaderManager.LoaderCallbacks<Cursor>{
 
@@ -114,8 +121,8 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String pushId = (String) view.getTag();
-                Intent intent = new Intent(getActivity(), com.id.drapp.detailActivity.class);
-                intent.putExtra("detailUri", patientEntry.contentUri(com.id.drapp.doctorPreference.getUsernameFromSP(getActivity())) + "/" + 1 + "/" + pushId);
+                Intent intent = new Intent(getActivity(), com.beastek.entidadesonline.detailActivity.class);
+                intent.putExtra("detailUri", patientEntry.contentUri(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(getActivity())) + "/" + 1 + "/" + pushId);
                 startActivity(intent);
             }
         });
@@ -191,20 +198,20 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
                 .setBackgroundColour(context.getColor(R.color.actionBar))
                 .setPrimaryText("Add Patients")
                 .setSecondaryText("Start Adding Patients to Offline and it will automatically Sync to cloud.")
-                .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
+                /*.setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
                 {
                     @Override
                     public void onHidePrompt(MotionEvent event, boolean tappedTarget)
                     {
                         //TODO: Store in SharedPrefs so you don't show this prompt again.
-                        com.id.drapp.doctorPreference.saveIsTapTargetShown(context, true);
+                        com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(context, true);
                     }
 
                     @Override
                     public void onHidePromptComplete()
                     {
                     }
-                })
+                })      */
                 .show();
 
     }
@@ -220,7 +227,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
                 patientEntry.COLUMN_PHONE_NUMBER,
                 patientEntry.COLUMN_IMAGE,
                 patientEntry.COLUMN_DOB};
-        return new CursorLoader(getActivity(), patientEntry.contentUri(com.id.drapp.doctorPreference.getUsernameFromSP(getActivity())), projection, null, null, null);
+        return new CursorLoader(getActivity(), patientEntry.contentUri(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(getActivity())), projection, null, null, null);
     }
 
     @Override
@@ -294,7 +301,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // do nothing
-                        com.id.drapp.doctorPreference.saveWantToRestoreData(getActivity(), false);
+                        com.beastek.entidadesonline.doctorPreference.saveWantToRestoreData(getActivity(), false);
                     }
                 })
                 .setIcon(android.R.drawable.sym_def_app_icon).show();
@@ -307,7 +314,7 @@ public class patientsFragment extends Fragment implements LoaderManager.LoaderCa
     }
 
     public static void startImmediateSync(@NonNull final Context context) {
-        Intent intentToSyncImmediately = new Intent(context, com.id.drapp.patientIntentService.class);
+        Intent intentToSyncImmediately = new Intent(context, com.beastek.entidadesonline.patientIntentService.class);
         context.startService(intentToSyncImmediately);
     }
 

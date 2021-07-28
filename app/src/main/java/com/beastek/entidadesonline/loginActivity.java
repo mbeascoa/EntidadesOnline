@@ -9,8 +9,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import
+import androidx.annotation.NonNull;
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -27,7 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.id.drapp.doctorContract.doctorEntry;
+import com.beastek.entidadesonline.doctorContract.doctorEntry;
 
 public class loginActivity extends AppCompatActivity {
 
@@ -66,7 +66,7 @@ public class loginActivity extends AppCompatActivity {
         mDatabaseReference = mFirebaseDatabase.getReference();
 
         progressDialog=new ProgressDialog(this,R.style.AppTheme_Dark_Dialog);
-        progressDialog.setMessage("Please Wait..");
+        progressDialog.setMessage("Por favor espere..");
         progressDialog.setCancelable(false);
 
 
@@ -109,13 +109,13 @@ public class loginActivity extends AppCompatActivity {
 
                                         createDoctorTable(doctorUsername);
 
-                                        com.id.drapp.patientDbHelper.createPatientDb(loginActivity.this, doctorUsername);
+                                        com.beastek.entidadesonline.patientDbHelper.createPatientDb(loginActivity.this, doctorUsername);
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(loginActivity.this, "Login UnSuccessfull", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(loginActivity.this, "Error al intentar entrar", Toast.LENGTH_SHORT).show();
                                         progressDialog.dismiss();
                                     }
                                 });
@@ -183,11 +183,8 @@ public class loginActivity extends AppCompatActivity {
                                 loginSuccessfull(useremail, appleSnapshot.getKey());
                             }
                         }
-
                     }
-
                 }
-
             }
 
             @Override
@@ -224,14 +221,14 @@ public class loginActivity extends AppCompatActivity {
                 }
             });
 
-            com.id.drapp.doctorPreference.saveIsTapTargetShown(this, false);
-            com.id.drapp.doctorPreference.saveUserPushId(this, null);
-            com.id.drapp.doctorPreference.saveUsernameInSP(this, null);
-            com.id.drapp.doctorPreference.saveBooleanInSP(this, false);
+            com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(this, false);
+            com.beastek.entidadesonline.doctorPreference.saveUserPushId(this, null);
+            com.beastek.entidadesonline.doctorPreference.saveUsernameInSP(this, null);
+            com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, false);
 
-            com.id.drapp.doctorPreference.saveUsernameInSP(this, doctorUsername);
-            com.id.drapp.doctorPreference.saveUserPushId(this, pushId);
-            com.id.drapp.doctorPreference.saveBooleanInSP(this, true);
+            com.beastek.entidadesonline.doctorPreference.saveUsernameInSP(this, doctorUsername);
+            com.beastek.entidadesonline.doctorPreference.saveUserPushId(this, pushId);
+            com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, true);
 
             progressDialog.dismiss();
 
@@ -249,10 +246,10 @@ public class loginActivity extends AppCompatActivity {
     }
 
     public void finishTheActivity(){
-        com.id.drapp.doctorPreference.saveIsTapTargetShown(this, false);
-        com.id.drapp.doctorPreference.saveBooleanInSP(this, false);
-        com.id.drapp.doctorPreference.saveUsernameInSP(this, null);
-        com.id.drapp.doctorPreference.saveUserPushId(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveUsernameInSP(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveUserPushId(this, null);
         firebaseAuth.signOut();
         finish();
     }

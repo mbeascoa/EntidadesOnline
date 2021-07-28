@@ -1,8 +1,8 @@
 package com.beastek.entidadesonline;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class patientAppointmentsActivity extends AppCompatActivity {
 
@@ -11,6 +11,6 @@ public class patientAppointmentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_appointments);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.container1, new com.id.drapp.patientAppointmentsFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container1, new com.beastek.entidadesonline.patientAppointmentsFragment()).setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE).commit();
     }
 }

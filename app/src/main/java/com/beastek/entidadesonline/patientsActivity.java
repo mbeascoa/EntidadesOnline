@@ -1,7 +1,7 @@
 package com.beastek.entidadesonline;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class patientsActivity extends AppCompatActivity {

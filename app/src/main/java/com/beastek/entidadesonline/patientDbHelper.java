@@ -4,8 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.id.drapp.doctorContract.doctorEntry;
-import com.id.drapp.doctorContract.patientEntry;
+import com.beastek.entidadesonline.doctorContract.doctorEntry;
+import com.beastek.entidadesonline.doctorContract.patientEntry;
 
 public class patientDbHelper extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "patient.db";

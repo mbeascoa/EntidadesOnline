@@ -5,10 +5,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.id.drapp.models.doctorAppointmentsModel;
+import com.beastek.entidadesonline.models.doctorAppointmentsModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +39,7 @@ public class secondTabFragment extends Fragment {
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth firebaseAuth;
 
-    private com.id.drapp.doctorAppointmentAdapter adapter;
+    private com.beastek.entidadesonline.doctorAppointmentAdapter adapter;
 
     private FirebaseAuth.AuthStateListener mAuthStateChangeListener;
     private ChildEventListener mChildEventListener;
@@ -90,7 +91,7 @@ public class secondTabFragment extends Fragment {
         };
 
         List<doctorAppointmentsModel> list = new ArrayList<>();
-        adapter = new com.id.drapp.doctorAppointmentAdapter(getActivity(), R.layout.appointment_list_item, list);
+        adapter = new com.beastek.entidadesonline.doctorAppointmentAdapter(getActivity(), R.layout.appointment_list_item, list);
         appointmentsList.setAdapter(adapter);
 
         appointmentsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -112,7 +113,7 @@ public class secondTabFragment extends Fragment {
                                 String dob = tags[3];
                                 String address = tags[4];
 
-                                Intent intent = new Intent(getActivity(), com.id.drapp.addPatientActivity.class);
+                                Intent intent = new Intent(getActivity(), com.beastek.entidadesonline.addPatientActivity.class);
                                 intent.putExtra("fullname", fullname);
                                 intent.putExtra("phoneno", phoneno);
                                 intent.putExtra("email", email);
@@ -150,9 +151,9 @@ public class secondTabFragment extends Fragment {
                 @Override
                 public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                     for(DataSnapshot snapshot: dataSnapshot
-                            .child(com.id.drapp.charUtility.filterString(com.id.drapp.doctorPreference.getUsernameFromSP(getActivity())))
+                            .child(com.beastek.entidadesonline.charUtility.filterString(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(getActivity())))
                             .child("appointments").getChildren()){
-                        if(dataSnapshot.hasChild(com.id.drapp.charUtility.filterString(com.id.drapp.doctorPreference.getUsernameFromSP(getActivity())))){
+                        if(dataSnapshot.hasChild(com.beastek.entidadesonline.charUtility.filterString(com.beastek.entidadesonline.doctorPreference.getUsernameFromSP(getActivity())))){
                             adapter.add(snapshot.getValue(doctorAppointmentsModel.class));
                         }
                     }

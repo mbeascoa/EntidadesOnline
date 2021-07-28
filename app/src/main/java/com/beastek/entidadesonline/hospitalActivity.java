@@ -1,6 +1,7 @@
 package com.beastek.entidadesonline;
 
 import android.annotation.SuppressLint;
+import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -9,10 +10,11 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import androidx.annotation.NonNull;
-import android.support.design.widget.TabLayout;
-import android.view.ViewPager;
+import com.google.android.material.tabs.TabLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
-import android.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
+
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
@@ -81,7 +83,7 @@ public class hospitalActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String[] tags = (String[]) view.getTag();
-                Intent intent = new Intent(hospitalActivity.this , com.id.drapp.hospitalDetailActivity.class);
+                Intent intent = new Intent(hospitalActivity.this , com.beastek.entidadesonline.hospitalDetailActivity.class);
                 intent.putExtra("tag", tags);
                 startActivity(intent);
             }
@@ -219,7 +221,7 @@ public class hospitalActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.patientmenu, menu);
 
-        if(com.id.drapp.doctorPreference.getIsTapTargetShown(hospitalActivity.this)){
+        if(com.beastek.entidadesonline.doctorPreference.getIsTapTargetShown(hospitalActivity.this)){
 
         }else {
             new Handler().post(new Runnable() {
@@ -232,21 +234,21 @@ public class hospitalActivity extends AppCompatActivity {
                             .setBackgroundColour(getResources().getColor(R.color.actionBar))
                             .setPrimaryText("Search Hospitals")
                             .setSecondaryText("You can Search Hospitals Registered with us.")
-                            .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
+                            /* .setOnHidePromptListener(new MaterialTapTargetPrompt.OnHidePromptListener()
                             {
                                 @Override
                                 public void onHidePrompt(MotionEvent event, boolean tappedTarget)
                                 {
                                     //TODO: Store in SharedPrefs so you don't show this prompt again.
-                                    com.id.drapp.doctorPreference.saveIsTapTargetShown(hospitalActivity.this, true);
+                                    com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(hospitalActivity.this, true);
                                 }
 
                                 @Override
                                 public void onHidePromptComplete()
                                 {
-                                    com.id.drapp.doctorPreference.saveIsTapTargetShown(hospitalActivity.this, true);
+                                    com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(hospitalActivity.this, true);
                                 }
-                            })
+                            })  */
                             .show();
 
                 }
@@ -289,7 +291,7 @@ public class hospitalActivity extends AppCompatActivity {
         mMaterialDialog = new MaterialDialog(this)
                 .setTitle("Doctorave")
                 .setMessage("Doctorave is a Complete App for Doctors and Patient. Developed by Bhavya Arora.")
-                .setContentView(R.layout.aboutusdialog)
+                //.setContentView(R.layout.aboutusdialog)
                 .setContentView(textView)
                 .setPositiveButton("OK", new View.OnClickListener() {
                     @Override
@@ -301,9 +303,9 @@ public class hospitalActivity extends AppCompatActivity {
     }
 
     private void logoutPatient() {
-        com.id.drapp.doctorPreference.savePhoneNumberInSP(this, null);
-        com.id.drapp.doctorPreference.saveBooleanInSP(this, false);
-        com.id.drapp.doctorPreference.saveIsTapTargetShown(this, false);
+        com.beastek.entidadesonline.doctorPreference.savePhoneNumberInSP(this, null);
+        com.beastek.entidadesonline.doctorPreference.saveBooleanInSP(this, false);
+        com.beastek.entidadesonline.doctorPreference.saveIsTapTargetShown(this, false);
         FirebaseAuth.getInstance().getCurrentUser().delete();
         finish();
     }

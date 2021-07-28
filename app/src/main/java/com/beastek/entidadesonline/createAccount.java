@@ -22,7 +22,7 @@ public class createAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        setTitle("Create Account");
+        setTitle("Crear Cuenta");
 
         if(com.beastek.entidadesonline.doctorPreference.getBooleanFromSP(this)){
             Intent intent = new Intent(this, patientsListActivity.class);
@@ -55,22 +55,22 @@ public class createAccount extends AppCompatActivity {
         String confirmpassword = passwordField.getText().toString().trim();
 
         if(TextUtils.isEmpty(firstname)){
-            firstName.setError("Cannot be Empty");
+            firstName.setError("No puede estar vacío");
         }else {
             if(TextUtils.isEmpty(lastname)){
-                lastName.setError("Cannot be Empty");
+                lastName.setError("No puede estar vacío");
             }else {
                 if(TextUtils.isEmpty(userphone)){
-                    userPhone.setError("Cannot be Empty");
+                    userPhone.setError("No puede estar vacío");
                 }else {
                     if(TextUtils.isEmpty(useremail)){
-                        userEmail.setError("Cannot be Empty");
+                        userEmail.setError("No puede estar vacío");
                     }else {
                         if(TextUtils.isEmpty(password)){
-                            passwordField.setError("Cannot be Empty");
+                            passwordField.setError("No puede estar vacío");
                         }else {
                             if(password.length() < 6){
-                                passwordField.setError("Password Should be Greater than 6");
+                                passwordField.setError("La contraseña debe tener más de 6 caracteres");
                             }else {
                                 if(TextUtils.isEmpty(confirmpassword)){
                                     confirmPasswordField.setError("Cannot be Empty");
@@ -84,7 +84,7 @@ public class createAccount extends AppCompatActivity {
                                         intent.putExtra("password", password);
                                         startActivity(intent);
                                     }else {
-                                        confirmPasswordField.setError("Password doesn't match");
+                                        confirmPasswordField.setError("La contraseña no coincide");
                                     }
                                 }
                             }

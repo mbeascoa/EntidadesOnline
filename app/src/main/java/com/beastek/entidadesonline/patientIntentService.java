@@ -5,7 +5,7 @@ import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat;
+import androidx.core.app.NotificationCompat;
 
 public class patientIntentService extends IntentService {
     private static volatile int FOREGROUND_ID = 1338;
@@ -24,7 +24,7 @@ public class patientIntentService extends IntentService {
     @Override
     protected void onHandleIntent(Intent intent) {
         startForeground(FOREGROUND_ID,
-                buildForegroundNotification("Please Don't Close App"));
+                buildForegroundNotification("Por favor no cierre la aplicación"));
 
         task.queryTheDatabase();
 
@@ -74,7 +74,7 @@ public class patientIntentService extends IntentService {
     }
 
     private static PendingIntent contentIntent(Context context) {
-        Intent startActivityIntent = new Intent(context, com.id.drapp.MainActivity.class);
+        Intent startActivityIntent = new Intent(context, com.beastek.entidadesonline.MainActivity.class);
         return PendingIntent.getActivity(
                 context,
                 CONTENT_ACTION_PENDING_INTENT,
