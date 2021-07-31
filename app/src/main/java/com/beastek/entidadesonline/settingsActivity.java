@@ -55,7 +55,7 @@ public class settingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        setTitle("Settings");
+        setTitle("Ajustes");
 
         doctorPic = findViewById(R.id.doctorPic);
         firstNameView = findViewById(R.id.firstName);
@@ -69,7 +69,7 @@ public class settingsActivity extends AppCompatActivity {
         doctorPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(settingsActivity.this, "Feature is Coming soon", Toast.LENGTH_SHORT).show();
+                Toast.makeText(settingsActivity.this, "Funcionalidad llegará pronto", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -127,7 +127,7 @@ public class settingsActivity extends AppCompatActivity {
 
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         if(networkInfo == null){
-            Toast.makeText(this, "Please Connect to Internet", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Por favor conéctese a Internet", Toast.LENGTH_LONG).show();
             return;
         }
 

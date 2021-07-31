@@ -45,6 +45,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import me.drakeet.materialdialog.MaterialDialog;
+
+// https://github.com/liuguangqiang/MaterialDialog-1/blob/master/library/src/main/java/me/drakeet/materialdialog/MaterialDialog.java
+
 import uk.co.samuelwall.materialtaptargetprompt.MaterialTapTargetPrompt;
 
 public class patientsListActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -222,16 +225,17 @@ public class patientsListActivity extends AppCompatActivity implements Navigatio
         TextView textView = new TextView(this);
         textView.setClickable(true);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
-        String text = "Doctorave is a Complete app for Doctors and Patients. Developed by Bhavya Arora. More Features Coming soon... <br><br>&emsp;<a href='https://github.com/bhavya-arora'> Github </a> &emsp;" +
-                "  <a href='https://in.linkedin.com/in/bhavya-arora-716b37145'> Linkedin </a> &emsp;  <a href='http://bhavya-arora.me/'> Website </a>" +
-                "<br><br><strong>Privacy and Policy / Open Source Licenses:</strong> <a href='http://bhavya-arora.me/doctorave-privacy-policy'> Check Here. </a><br><br><Strong>Fork us on Github: </Strong><a href='https://github.com/bhavya-arora/Doctorave'>Here. </a><br><br> If any Issue/Bug contact us here: <a href=\"mailto:gobhavyaarora15@gmail.com?Subject=Hello%20again\" target=\"_top\">here</a>";
+        String text = "Entidades Online es una aplicación para Funcionarios/Doctores/Maestros " +
+                "y Ciudadanos/Pacientes/Alumnos según el caso... <br><br>&emsp;<a href='https://github.com/bhavya-arora'> Github </a> &emsp;" +
+                "  <a href='https://in.linkedin.com/in/bhavya-arora-716b37145'> Linkedin </a> &emsp;  <a href='http://www.beastek.net'> Website </a>" +
+                "<br><br><strong>Privacy and Policy / Open Source Licenses:</strong> <a href='http://www.beastek.net/privacidad.html'> Check Here. </a><br><br><Strong>Síguenos en Github: </Strong><a href='https://github.com/bhavya-arora/Doctorave'>Here. </a><br><br> If any Issue/Bug contact us here: <a href=\"mailto:miguel.beascoa@beastek.net?Subject=Hola%20Miguel\" target=\"_top\">here</a>";
         textView.setText(Html.fromHtml(text));
 
 
         mMaterialDialog = new MaterialDialog(this)
-                .setTitle("Doctorave")
-                .setMessage("Doctorave is a Complete App for Doctors and Patient. Developed by Bhavya Arora.")
-                // .setContentView(R.layout.aboutusdialog)
+                .setTitle("Entidades Online")
+                .setMessage("Es una aplicación para gestionar cualquier entidad online.")
+                .setContentView(R.layout.aboutusdialog)
                 .setContentView(textView)
                 .setPositiveButton("OK", new View.OnClickListener() {
                     @Override

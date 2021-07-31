@@ -19,43 +19,47 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="normal"
+                android:layout_marginRight="10dp"
+                android:text="Teléfono Móvil: "
                 android:textColor="@color/actionBar"
-                android:text="Phone: "
-                android:layout_marginRight="10dp" />
+                android:textSize="18sp"
+                android:textStyle="normal" />
+
             <EditText
                 android:id="@+id/countryCodeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="+91"
+                android:layout_marginRight="3dp"
+                android:text="+34"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:layout_marginRight="3dp"/>
+                android:textSize="18sp" />
+
             <EditText
                 android:id="@+id/phoneNumberView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="87003**115"
-                android:textColorHint="@android:color/darker_gray"
+                android:hint="617***789"
+                android:paddingRight="15dp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp"
-                android:paddingRight="15dp"/>
+                android:textColorHint="@android:color/darker_gray"
+                android:textSize="18sp" />
         </LinearLayout>
+
         <Button
             android:id="@+id/sendCode"
-            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/shadowlightgreen"
-            android:textColor="@android:color/white"
-            android:textSize="14sp"
             android:fontFamily="sans-serif-smallcaps"
-            android:text="Send Code"/>
+            android:text="Enviar código SMS"
+            android:textColor="@android:color/white"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>

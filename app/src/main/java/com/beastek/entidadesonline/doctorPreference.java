@@ -13,7 +13,7 @@ public class doctorPreference {
     public static String TAPTARGET = "tapTarget";
 
     public static void saveBooleanInSP(Context _context, boolean value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(ISLOGGEDIN, value);
         editor.commit();
@@ -21,14 +21,15 @@ public class doctorPreference {
 
     public static boolean getBooleanFromSP(Context _context) {
 // TODO Auto-generated method stub
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         return preferences.getBoolean(ISLOGGEDIN, false);
 
-        //false es el valor a retornar si la preferencia no existe.
+        //false es el valor a retornar si la preferencia no existe. Devuelve false si no existe la preferencia.
+        // Si existe devuelve el valor que tenga la variable ISSLOGGEDIN
     }
 
     public static void saveUsernameInSP(Context _context, String value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(USERNAME, value);
         editor.commit();
@@ -39,13 +40,13 @@ public class doctorPreference {
         if(context == null){
             return null;
         }else {
-            SharedPreferences preferences = context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+            SharedPreferences preferences = context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
             return preferences.getString(USERNAME, null);
         }
     }
 
     public static void savePhoneNumberInSP(Context _context, String value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PHONENO, value);
 
@@ -59,13 +60,13 @@ public class doctorPreference {
         if(context == null){
             return null;
         }else {
-            SharedPreferences preferences = context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+            SharedPreferences preferences = context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
             return preferences.getString(PHONENO, null);
         }
     }
 
     public static void saveUserPushId(Context _context, String value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PUSHID, value);
         editor.commit();
@@ -76,13 +77,13 @@ public class doctorPreference {
         if(context == null){
             return null;
         }else {
-            SharedPreferences preferences = context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+            SharedPreferences preferences = context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
             return preferences.getString(PUSHID, null);
         }
     }
 
     public static void saveWantToRestoreData(Context _context, boolean value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(RESTORE_DATA, value);
         editor.apply();
@@ -90,12 +91,12 @@ public class doctorPreference {
 
     public static boolean getWantToRestoreData(Context _context) {
 // TODO Auto-generated method stub
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         return preferences.getBoolean(RESTORE_DATA, true);
     }
 
     public static void saveIsTapTargetShown(Context _context, boolean value){
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putBoolean(TAPTARGET, value);
         editor.apply();
@@ -103,7 +104,7 @@ public class doctorPreference {
 
     public static boolean getIsTapTargetShown(Context _context) {
 // TODO Auto-generated method stub
-        SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
+        SharedPreferences preferences = _context.getSharedPreferences("ENTIDADESONLINE", Context.MODE_PRIVATE);
         return preferences.getBoolean(TAPTARGET, false);
     }
 }

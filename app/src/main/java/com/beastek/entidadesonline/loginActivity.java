@@ -88,10 +88,10 @@ public class loginActivity extends AppCompatActivity {
         String doctorPassword = password.getText().toString();
 
         if(TextUtils.isEmpty(doctorUsername)){
-            username.setError("Cannot be Empty");
+            username.setError("El usuario no puede estar vacío");
         }else {
             if(TextUtils.isEmpty(doctorPassword)){
-                password.setError("Cannot be Empty");
+                password.setError("La password no puede estar vacía");
             }else {
                 Cursor cursor = getContentResolver().query(Uri.parse(doctorContract.doctorEntry.CONTENT_URI + "/" + doctorUsername + "/" + doctorPassword),
                         null, null, null, null);
@@ -99,7 +99,7 @@ public class loginActivity extends AppCompatActivity {
                 progressDialog.show();
                 if(networkInfo == null){
                     progressDialog.dismiss();
-                    Toast.makeText(this, "No Internet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "No hayiInternet", Toast.LENGTH_LONG).show();
                 }else {
                     if(cursor.getCount() == 0){
                         firebaseAuth.signInWithEmailAndPassword(doctorUsername, doctorPassword)

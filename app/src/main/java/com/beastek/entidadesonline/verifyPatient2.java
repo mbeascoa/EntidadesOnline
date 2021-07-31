@@ -58,7 +58,7 @@ public class verifyPatient2 extends AppCompatActivity {
         verifyCode = findViewById(R.id.verifyCode);
 
         progressDialog=new ProgressDialog(this,R.style.AppTheme_Dark_Dialog);
-        progressDialog.setMessage("Please Wait..");
+        progressDialog.setMessage("Por favor, espere..");
         progressDialog.setCancelable(false);
 
         phone = getIntent().getStringExtra("phone");

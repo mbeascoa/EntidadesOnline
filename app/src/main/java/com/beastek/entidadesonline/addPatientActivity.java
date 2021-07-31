@@ -17,6 +17,8 @@ import android.provider.MediaStore;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -87,6 +89,8 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        //al pulsar sobre la imagen verificamos si tenemos internet, en caso negativo sacamos mensaje para que se conecte
+        //si hay internet tomamos una foto
         patientPic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +98,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                 //Checking the Network State
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                 if(networkInfo == null){
-                    Toast.makeText(addPatientActivity.this, "Please Connect to Internet to use this feature", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(addPatientActivity.this, "Por favor conéctese a internet para utilizar esta funcionalidad", Toast.LENGTH_SHORT).show();
                 }else {
                     Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
@@ -170,7 +174,8 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
     @NonNull
     @Override
     public Loader<Cursor> onCreateLoader(int id, @Nullable Bundle args) {
-        String[] projection = {patientEntry._ID, patientEntry.COLUMN_NAME,
+        String[] projection = {patientEntry._ID,
+                patientEntry.COLUMN_NAME,
                 patientEntry.COLUMN_ADDRESS,
                 patientEntry.COLUMN_PHONE_NUMBER,
                 patientEntry.COLUMN_GENDER,
@@ -235,19 +240,19 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
         final String address = patientAdd.getText().toString();
 
         if(TextUtils.isEmpty(name)){
-            patientName.setError("No puede ser un campo vacío");
+            patientName.setError("El nombre no puede estar vacío");
         }else {
             if(TextUtils.isEmpty(phoneNumber)){
-                patientphno.setError("No puede ser un campo vacío");
+                patientphno.setError("El telefono no puede estar vacío");
             }else {
                 if(TextUtils.isEmpty(email)){
-                    patientEmail.setError("No puede ser un campo vacío");
+                    patientEmail.setError("El email no puede estar vacío");
                 }else {
                     if(TextUtils.isEmpty(dob)){
-                        patientDob.setError("No puede ser un campo vacío");
+                        patientDob.setError("La fecha de nacimiento no puede estar vacía");
                     }else {
                         if(TextUtils.isEmpty(address)){
-                            patientAdd.setError("No puede ser un campo vacío");
+                            patientAdd.setError("La dirección no puede estar vacía");
                         }else {
                             if(patientUri == null){
 
@@ -264,14 +269,14 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                                 mDatabaseReference = mDatabaseReference.push();
                                 String pushId = mDatabaseReference.getKey();
 
-                                //Checking the Network State
+                                //Chequeando el estado de la conectividad
                                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                                 if(networkInfo == null){
                                     if(bmpByte == null){
                                         cv.put(patientEntry.COLUMN_PUSH_ID, pushId);
                                         uri = Uri.parse(getContentResolver().insert(patientEntry.contentUri(user), cv) + "/" + pushId);
                                     }else {
-                                        Toast.makeText(addPatientActivity.this, "Please Connect to Internet to upload image", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(addPatientActivity.this, "Por favor conéctese a internet para subir la imagen", Toast.LENGTH_SHORT).show();
                                         return;
                                     }
                                 }else {
@@ -280,10 +285,11 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                                 }
 
                                 if(uri == null){
-                                    Toast.makeText(this, "Insertion Failed", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(this, "Error en la inserción", Toast.LENGTH_LONG).show();
                                 }else{
 
                                     ////////////////////////////Firebase/////////////////////////////
+                                    // el id que es un long es el --- new patientsInfo(Long.parseLong(uri.getPathSegments().get(1))
 
                                     if(bmpByte == null){
                                         mDatabaseReference.setValue(new patientsInfo(Long.parseLong(uri.getPathSegments().get(1)), name, phoneNumber, email, dob, address, GENDER, null))
@@ -303,7 +309,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                                                     }
                                                 });
 
-                                        Toast.makeText(this, "New Patient Added Successfully", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(this, "Nuevo Paciente / Ciudadano Añadido Satisfactoriamente", Toast.LENGTH_LONG).show();
                                         finish();
                                         Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                         intent.putExtra("detailUri", uri.toString());
@@ -312,7 +318,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                                     }else {
                                         final StorageReference photoReference = mStorageReference.child(pushId);
 
-                                        //Upload file to storage
+                                        //Sube el fichero al almacenamiento
                                         final UploadTask uploadTask = photoReference.putBytes(bmpByte);
 
                                         Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -433,9 +439,9 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
                                             public void onComplete(@NonNull Task<Uri> task) {
                                                 if (task.isSuccessful()) {
                                                     Uri downloadUri = task.getResult();
-                                                    // Continue with the task to get the download URL
+                                                    // Continua con la tarea hasta obtener la URL de descarga
                                                 } else {
-                                                    Toast.makeText(addPatientActivity.this, "Image Failed", Toast.LENGTH_SHORT).show();
+                                                    Toast.makeText(addPatientActivity.this, "Imagen Falló", Toast.LENGTH_SHORT).show();
                                                 }
                                             }
                                         }).addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -454,7 +460,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
 
                                     }
 
-                                    Toast.makeText(this, "Patient Updated Successfull", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(this, "Paciente/Ciudadano añadido correctamente", Toast.LENGTH_LONG).show();
                                     finish();
                                     Intent intent = new Intent(this, com.beastek.entidadesonline.detailActivity.class);
                                     intent.putExtra("detailUri", patientUri);
@@ -468,13 +474,13 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
         }
     }
 
-    public void updateInFirebase(final String id, final patientsInfo info){
+    public void updateInFirebase(final String id, final patientsInfo pacinfo){
         Query hekkQuery = mDatabaseReference;
 
         hekkQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                dataSnapshot.child(id).getRef().setValue(info);
+                dataSnapshot.child(id).getRef().setValue(pacinfo);
             }
 
             @Override

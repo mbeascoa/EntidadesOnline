@@ -42,14 +42,16 @@ public class verifyPatient extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_verify_patient);
-
+        //leemos el número de teléfono de las preferencias compartidas, en el caso de que existe el
+        // número de telefóno nos vamos a hospitalActivity
         if (com.beastek.entidadesonline.doctorPreference.getPhoneNumberFromSP(this) != null){
             Intent intent = new Intent(this, com.beastek.entidadesonline.hospitalActivity.class);
             startActivity(intent);
         }
 
+        //en el caso de que no tengamos el número de movil registrado en Firebase auth, lanzamos la verificación por SMS
         progressDialog=new ProgressDialog(this,R.style.AppTheme_Dark_Dialog);
-        progressDialog.setMessage("Please Wait..");
+        progressDialog.setMessage("Por favor, espere..");
         progressDialog.setCancelable(false);
 
         countryCodeView = findViewById(R.id.countryCodeView);
@@ -58,25 +60,27 @@ public class verifyPatient extends AppCompatActivity {
 
         firebasePhoneVerification();
 
-
+        //Verificamos si tenemos conexión a internet
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
+        //esperamos presione el botón de enviar código SMS, verificamos si está conectado a Internet
         sendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
                 if(networkInfo == null){
-                    Toast.makeText(verifyPatient.this, "Make Sure you are connected to Internet", Toast.LENGTH_LONG).show();
+                    Toast.makeText(verifyPatient.this, "Verifique que está conectado a Internet", Toast.LENGTH_LONG).show();
                 }else {
                     if(TextUtils.isEmpty(countryCodeView.getText().toString().trim())){
-                        countryCodeView.setError("Cannot be Empty");
+                        countryCodeView.setError("El campo código de País no puede estar vacío");
                     }else {
                         if(TextUtils.isEmpty(phoneNumberView.getText().toString().trim())){
-                            phoneNumberView.setError("Cannot be Empty");
+                            phoneNumberView.setError("El campo telefono móvil no puede estar vacío");
                         }else{
                             progressDialog.show();
                             fullPhoneNo = countryCodeView.getText().toString().trim().concat(phoneNumberView.getText().toString().trim());
-                            String numberToVerify = fullPhoneNo; //Should come from user input
+                            String numberToVerify = fullPhoneNo; //es la concatenación del codigo de país más el número de telefono
+                            // que introduce el usuarios
 
                             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                                     fullPhoneNo,        // Phone number to verify
@@ -113,7 +117,7 @@ public class verifyPatient extends AppCompatActivity {
             @Override
             public void onCodeSent(String s, PhoneAuthProvider.ForceResendingToken forceResendingToken) {
                 progressDialog.dismiss();
-                Toast.makeText(verifyPatient.this, "Code Sent ", Toast.LENGTH_LONG).show();
+                Toast.makeText(verifyPatient.this, "Código Enviado ", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(verifyPatient.this, com.beastek.entidadesonline.verifyPatient2.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 intent.putExtra("verificationId", s);

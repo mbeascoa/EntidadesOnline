@@ -62,7 +62,7 @@ public class detailActivity extends AppCompatActivity implements LoaderManager.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        setTitle("Patient Detail");
+        setTitle("Detalle del Paciente, Ciudadano");
 
         detailName = findViewById(R.id.detailName);
         detailPhone = findViewById(R.id.detailPhone);
@@ -79,11 +79,11 @@ public class detailActivity extends AppCompatActivity implements LoaderManager.L
                 String id = Uri.parse(patientUri).getPathSegments().get(2);
                 int rowAffected = getContentResolver().delete(Uri.parse(patientUri),null, null);
                 if(rowAffected == 0){
-                    Toast.makeText(detailActivity.this,"Deletion Failed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(detailActivity.this,"Error al Borrar", Toast.LENGTH_LONG).show();
                 }
                 else{
                     deleteFromFirebase(id);
-                    Toast.makeText(detailActivity.this, "Deletion Successful", Toast.LENGTH_LONG).show();
+                    Toast.makeText(detailActivity.this, "Borrado Exitoso", Toast.LENGTH_LONG).show();
                 }
                 finish();
             }
