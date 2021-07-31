@@ -42,7 +42,7 @@ public class patientOrDoctorActivity extends AppCompatActivity {
         privacyPolicy.setClickable(true);
         privacyPolicy.setMovementMethod(LinkMovementMethod.getInstance());
 
-        String text = "<a href='http://bhavya-arora.me/doctorave-privacy-policy'> Privacy Policy </a>";
+        String text = "<a href='http://beastek.net/privacidad.html'> Política de Privacidad </a>";
         privacyPolicy.setText(Html.fromHtml(text));
 
         areYouDoctor.setOnClickListener(new View.OnClickListener() {

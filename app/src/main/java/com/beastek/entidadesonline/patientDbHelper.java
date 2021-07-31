@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+
 import com.beastek.entidadesonline.doctorContract.doctorEntry;
 import com.beastek.entidadesonline.doctorContract.patientEntry;
 

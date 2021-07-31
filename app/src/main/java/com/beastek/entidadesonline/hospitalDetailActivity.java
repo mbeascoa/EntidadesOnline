@@ -133,8 +133,14 @@ public class hospitalDetailActivity extends AppCompatActivity {
 
     private void createDialog() {
         dialog = new Dialog(this);
+
+        // Podemos esconder el título de un dialogo utilizando este comando;:
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        // establecemos que el dialogo no es cancelable dando a la tecla BACK.
         dialog.setCancelable(false);
+        // Set the screen content from a layout resource.
         dialog.setContentView(R.layout.customdialog);
 
         Button cancelAppointment = dialog.findViewById(R.id.cancelAppointment);

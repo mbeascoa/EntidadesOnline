@@ -38,13 +38,13 @@ public class patientIntentService extends IntentService {
     private Notification buildForegroundNotification(String filename) {
         NotificationCompat.Builder b = new NotificationCompat.Builder(this);
 
-        b.setContentTitle("Syncing..")
+        b.setContentTitle("Sincronizando..")
                 .setContentText(filename)
                 .setColor(getResources().getColor(R.color.actionBar))
                 .setContentIntent(contentIntent(this))
                 .setSmallIcon(android.R.drawable.stat_sys_download)
                 .addAction(FirstAction(this, "Stop"))
-                .setTicker("Syncing..");
+                .setTicker("Sincronizando..");
 
         return (b.build());
     }

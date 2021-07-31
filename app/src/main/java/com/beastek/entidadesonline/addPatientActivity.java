@@ -160,7 +160,7 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
             }
 
         }else {
-            Toast.makeText(addPatientActivity.this, "You haven't picked Image",Toast.LENGTH_LONG).show();
+            Toast.makeText(addPatientActivity.this, "No ha sellecionado una imagen",Toast.LENGTH_LONG).show();
 
         }
 
@@ -235,19 +235,19 @@ public class addPatientActivity extends AppCompatActivity implements LoaderManag
         final String address = patientAdd.getText().toString();
 
         if(TextUtils.isEmpty(name)){
-            patientName.setError("Cannot be Empty");
+            patientName.setError("No puede ser un campo vacío");
         }else {
             if(TextUtils.isEmpty(phoneNumber)){
-                patientphno.setError("Cannot be Empty");
+                patientphno.setError("No puede ser un campo vacío");
             }else {
                 if(TextUtils.isEmpty(email)){
-                    patientEmail.setError("Cannot be Empty");
+                    patientEmail.setError("No puede ser un campo vacío");
                 }else {
                     if(TextUtils.isEmpty(dob)){
-                        patientDob.setError("Cannot be Empty");
+                        patientDob.setError("No puede ser un campo vacío");
                     }else {
                         if(TextUtils.isEmpty(address)){
-                            patientAdd.setError("Cannot be Empty");
+                            patientAdd.setError("No puede ser un campo vacío");
                         }else {
                             if(patientUri == null){
 

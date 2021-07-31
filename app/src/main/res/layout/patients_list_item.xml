@@ -24,7 +24,7 @@
             android:textStyle="normal"
             android:layout_weight="1"
             android:textColor="@android:color/black"
-            android:hint="Sanjay Kumar"/>
+            android:hint="Miguel Beascoa"/>
         <TextView
             android:id="@+id/patientAddress"
             android:layout_width="wrap_content"
@@ -33,14 +33,14 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textColor="@color/album_title"
-            android:hint="Sanjay Kumar"/>
+            android:hint="Miguel Beascoa"/>
         <TextView
             android:id="@+id/patientAge"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:textColor="@color/album_title"
-            android:hint="12"/>
+            android:hint="52"/>
 
     </LinearLayout>
 

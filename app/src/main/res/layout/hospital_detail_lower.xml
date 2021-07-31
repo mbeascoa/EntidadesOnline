@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -57,13 +57,13 @@
                 android:id="@+id/getAppointment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="3dp"
-                android:textSize="18sp"
-                android:background="@drawable/shadowlightgreen"
-                android:text="Get Appointment"
                 android:layout_marginLeft="10dp"
+                android:background="@drawable/shadowlightgreen"
+                android:elevation="3dp"
                 android:fontFamily="sans-serif-smallcaps"
-                android:textColor="@android:color/white"/>
+                android:text="Conseguir Cita"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
 
         </LinearLayout>
 

@@ -91,8 +91,8 @@ public class createAccount2Activity extends AppCompatActivity {
         createAccount2Login = findViewById(R.id.createAcoount2Login);
         doctorName = findViewById(R.id.doctorName);
         userTitle = findViewById(R.id.userTitle);
-        institute = findViewById(R.id.institute);
-        instituteAddress = findViewById(R.id.instituteAddress);
+        institute = findViewById(R.id.nombreEntidad);
+        instituteAddress = findViewById(R.id.entidadAddress);
         userPic = findViewById(R.id.userPic);
         frame = findViewById(R.id.frame);
 

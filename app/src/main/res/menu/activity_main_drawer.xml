@@ -6,25 +6,25 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/settings"
-            android:title="Settings"
-            android:icon="@drawable/ic_settings_black_24dp"/>
+            android:icon="@drawable/ic_settings_black_24dp"
+            android:title="Ajustes" />
     </group>
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_sync"
-            android:title="Sync"
-            android:icon="@drawable/ic_sync_black_24dp"/>
+            android:icon="@drawable/ic_sync_black_24dp"
+            android:title="Sincronizar" />
 
         <item
             android:id="@+id/nav_about"
-            android:title="About Us"
-            android:icon="@drawable/ic_perm_identity_black_24dp"/>
+            android:icon="@drawable/ic_perm_identity_black_24dp"
+            android:title="Acerca de nosotros" />
 
         <item
             android:id="@+id/nav_logout"
-            android:title="Logout"
-            android:icon="@drawable/ic_do_not_disturb_on_black_24dp"/>
+            android:icon="@drawable/ic_do_not_disturb_on_black_24dp"
+            android:title="Salir (logout)" />
     </group>
 
 </menu>

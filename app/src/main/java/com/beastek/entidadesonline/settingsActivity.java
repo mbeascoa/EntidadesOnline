@@ -61,8 +61,8 @@ public class settingsActivity extends AppCompatActivity {
         firstNameView = findViewById(R.id.firstName);
         lastNameView = findViewById(R.id.lastName);
         userTitle = findViewById(R.id.userTitle);
-        institute = findViewById(R.id.institute);
-        instituteAddress = findViewById(R.id.instituteAddress);
+        institute = findViewById(R.id.nombreEntidad);
+        instituteAddress = findViewById(R.id.entidadAddress);
 
         connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 

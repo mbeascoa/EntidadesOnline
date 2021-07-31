@@ -12,8 +12,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button createAccount;
-    private Button loginButton;
+    private Button crearCuenta;
+    private Button login;
 
     private FirebaseDatabase mFirebaseDatabase;
     private DatabaseReference mDatabaseReference;
@@ -27,17 +27,21 @@ public class MainActivity extends AppCompatActivity {
         mFirebaseDatabase = MyDatabaseUtil.getDatabase();
         mDatabaseReference = mFirebaseDatabase.getReference().child("patientData");
 
+        // si el usuario ya está logado, entonces salta directamente a patientsListActivity.class
+
         if(doctorPreference.getBooleanFromSP(this)){
             Intent intent = new Intent(this, patientsListActivity.class);
             startActivity(intent);
         }
 
+        //si el usuario no está logado continúa a que cree una cuenta nueva o se logue
+
         Context context = myApp.getAppContext();
 
-        createAccount = findViewById(R.id.createAccount);
-        loginButton = findViewById(R.id.loginButton);
+        crearCuenta = findViewById(R.id.createAccount);
+        login = findViewById(R.id.loginButton);
 
-        createAccount.setOnClickListener(new View.OnClickListener() {
+        crearCuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, createAccount.class);
@@ -45,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        loginButton.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, loginActivity.class);

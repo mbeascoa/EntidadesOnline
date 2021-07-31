@@ -5,10 +5,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorPrimary"
     android:orientation="vertical"
-    tools:context="com.id.drapp.patientsListActivity"
+    tools:context="com.beastek.entidadesonline.patientsListActivity"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <android.support.design.widget.AppBarLayout
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
@@ -25,7 +25,7 @@
             android:id="@+id/searchBar" />
 
 
-        <android.support.v7.widget.Toolbar
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
@@ -34,16 +34,16 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
 
-    </android.support.design.widget.AppBarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-        <android.support.design.widget.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/CategoryTab"
             android:background="@color/actionBar"
             android:id="@+id/tabsLayout"/>
 
-        <androidx.core.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/pager"/>

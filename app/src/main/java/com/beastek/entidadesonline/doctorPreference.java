@@ -23,6 +23,8 @@ public class doctorPreference {
 // TODO Auto-generated method stub
         SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
         return preferences.getBoolean(ISLOGGEDIN, false);
+
+        //false es el valor a retornar si la preferencia no existe.
     }
 
     public static void saveUsernameInSP(Context _context, String value){
@@ -46,7 +48,10 @@ public class doctorPreference {
         SharedPreferences preferences = _context.getSharedPreferences("PROJECTNAME", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(PHONENO, value);
-        editor.apply();
+
+
+        // diferencias entre editor.apply() que hace I/O a disco de manera asíncrona
+        // mientras commit() es síncrono. So you really shouldn't call commit() from the UI thread.
     }
 
     public static String getPhoneNumberFromSP(Context context) {

@@ -6,11 +6,11 @@
 
     <item
         android:id="@+id/logout1"
-        android:title="Logout"
+        android:title="Salir (Logout)"
         app:showAsAction="never" />
     <item
         android:id="@+id/aboutUs"
-        android:title="About Us"
+        android:title="Acerca de Nosotros"
         app:showAsAction="never" />
 
     <item

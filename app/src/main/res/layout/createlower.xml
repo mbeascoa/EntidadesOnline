@@ -21,14 +21,15 @@
                 android:layout_weight="1"
                 android:hint="Password"
                 android:inputType="textPassword"/>
+
             <EditText
                 android:id="@+id/confirmPasswordField"
                 android:layout_width="270dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:hint="Confirma la Password"
+                android:inputType="textPassword" />
 
             <Button
                 android:id="@+id/createAccountButton"

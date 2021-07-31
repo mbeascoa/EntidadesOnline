@@ -24,7 +24,7 @@ public class createAccount extends AppCompatActivity {
         setContentView(R.layout.activity_create_account);
         setTitle("Crear Cuenta");
 
-        if(com.beastek.entidadesonline.doctorPreference.getBooleanFromSP(this)){
+        if(doctorPreference.getBooleanFromSP(this)){
             Intent intent = new Intent(this, patientsListActivity.class);
             startActivity(intent);
         }
@@ -55,25 +55,25 @@ public class createAccount extends AppCompatActivity {
         String confirmpassword = passwordField.getText().toString().trim();
 
         if(TextUtils.isEmpty(firstname)){
-            firstName.setError("No puede estar vacío");
+            firstName.setError("El nombre no puede estar vacío");
         }else {
             if(TextUtils.isEmpty(lastname)){
-                lastName.setError("No puede estar vacío");
+                lastName.setError("El apellido no puede estar vacío");
             }else {
                 if(TextUtils.isEmpty(userphone)){
-                    userPhone.setError("No puede estar vacío");
+                    userPhone.setError("El telefono no puede estar vacío");
                 }else {
                     if(TextUtils.isEmpty(useremail)){
-                        userEmail.setError("No puede estar vacío");
+                        userEmail.setError("El correo no puede estar vacío");
                     }else {
                         if(TextUtils.isEmpty(password)){
-                            passwordField.setError("No puede estar vacío");
+                            passwordField.setError("La contraseña no puede estar vacía");
                         }else {
                             if(password.length() < 6){
                                 passwordField.setError("La contraseña debe tener más de 6 caracteres");
                             }else {
                                 if(TextUtils.isEmpty(confirmpassword)){
-                                    confirmPasswordField.setError("Cannot be Empty");
+                                    confirmPasswordField.setError("La confirmación de la contraseña no puede estar vacía");
                                 }else {
                                     if(passwordField.getText().toString().equals(confirmPasswordField.getText().toString())){
                                         Intent intent = new Intent(this, createAccount2Activity.class);
